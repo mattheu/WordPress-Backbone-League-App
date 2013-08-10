@@ -3,6 +3,8 @@ WordPress-Backbone-League-App
 
 WordPress/Backbone League App
 
+Very early stages really (and I probably won't take it any further)
+
 
 Issues...
 
