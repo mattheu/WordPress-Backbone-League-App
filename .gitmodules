@@ -1,0 +1,15 @@
+[submodule "ratchet"]
+	path = ratchet
+	url = https://github.com/maker/ratchet.git
+[submodule "Ratchet"]
+	path = Ratchet
+	url = https://github.com/maker/ratchet.git
+[submodule "wordpress/wp"]
+	path = wordpress/wp
+	url = https://github.com/WordPress/WordPress.git
+[submodule "wordpress/content/functions/hm-rewrite"]
+	path = wordpress/content/functions/hm-rewrite
+	url = https://github.com/humanmade/hm-rewrite.git
+[submodule "wordpress/content/functions/hm-core"]
+	path = wordpress/content/functions/hm-core
+	url = https://github.com/humanmade/hm-core.git

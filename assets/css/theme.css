@@ -1,0 +1,55 @@
+.info,
+.updated									{ padding: 0.75em; margin: 0.75em 0; border: 1px solid #E6DB55; background: #FFFBCC; }
+.success									{ padding: 0.75em; margin: 0.75em 0; border: 1px solid #abd991; background: #dfffcc; }
+.error										{ padding: 0.75em; margin: 0.75em 0; border: 1px solid #e5a49a; background: #FFEBE8; }
+
+.info *:last-child,
+.updated *:last-child,
+.success *:last-child,
+.error *:last-child							{ margin: 0; }
+
+.clear										{ display: block; clear: both; }
+.spacer										{ display: block; height: 1px; margin-top: -1px; margin-bottom: .75em; clear: both; }
+
+.clearfix:before,
+.clearfix::after 							{ content:""; display:table; }
+.clearfix::after							{ clear:both; }
+.clearfix
+
+.nav-wrap { margin-top: -1.5em 0 1.5em; }
+.content { margin-top: -1px; }
+
+.content input,
+.content select { margin-bottom: .75em; }
+
+.bar-title h1 { margin: 0; }
+
+.form-section-player { width: 50%; float: left; box-sizing: border-box; padding-right: 5px;  }
+.form-section-player + .form-section-player { padding-right: 0; padding-left: 5px; }
+.button-block { width: 100%; }
+
+.list,
+.wrap .inset.list  { margin-left: 0; margin-right: 0; }
+
+table { border-collapse: separate; width: 100%; border-spacing: 0; border: 1px solid #AAA; border-radius: 5px; margin-bottom: 1.5em; }
+table td,
+table th { border-top: 1px solid #AAA; border-left: 1px solid #AAA; padding: .75em 10px; }
+table td:first-child,
+table th:first-child { border-left: none; }
+
+table thead tr:first-child th:first-child,
+table tbody:first-child tr:first-child td:first-child { border-top-left-radius: 5px; }
+table thead tr:first-child th:last-child,
+table tbody:first-child tr:first-child td:last-child { border-top-right-radius: 5px; }
+
+.content .nav-wrap { margin-top: -1.5em; margin-bottom: 1.5em; }
+.content .bar-standard { position: static;  }
+
+table .num { text-align:  center; }
+table .right { text-align:  right; }
+table .action { text-align: center; width: 30px; }
+table .date { text-align: center; width: 70px; }
+
+.results-table td.first { text-align: right; }
+
+.wrap { margin: 0 10px; }

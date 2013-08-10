@@ -1,0 +1,189 @@
+<div id="app-container"></div>
+
+<script type="text/template" id="home-template">
+
+	<header class="bar-title">
+		<h1 class="title">My League App</h1>
+	</header>
+
+	<div id="leagues" class="content">
+		<ul class="list"></ul>
+	</div>
+
+</script>
+
+<script type="text/template" id="league-template">
+
+	<header class="bar-title">
+		<button class="button-prev link-home" data-transition="slide-out">Home</button>
+		<h1 id="league-title" class="title"><%- name %></h1>
+		<button class="button link-settings" data-transition="slide-out"><i class="icon-cog"></i></button>
+	</header>
+
+	<div class="content">
+
+
+		<div class="bar-standard bar-header-secondary">
+	  		<a class="link-new-result button-block">Record New Result</a>
+		</div>
+
+		<div class="spacer"></div>
+
+		<ul id="league-nav" class="segmented-controller">
+			<li><a href="#" class="link-league-standings" data-transition="fade">Standings</a></li>
+			<li><a href="#" class="link-league-results" data-transition="fade">Results</a></li>
+			<li><a href="#" class="link-league-fixtures" data-transition="fade">Fixtures</a></li>
+		</ul>
+
+		<div id="league-view" class="section wrap"></div>
+
+	</div>
+</script>
+
+
+<script type="text/template" id="league-title-template">
+</script>
+
+<script type="text/template" id="league-standings-section-template">
+	<div id="league-standings">
+		<table id="league-standings-table">
+			<thead>
+				<tr>
+					<th class="left">Name</th>
+					<th class="right">Pl</th>
+					<th class="right">W</th>
+					<th class="right">L</th>
+					<th class="right">D</th>
+					<th class="right">GD</th>
+					<th class="right num">Pts</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+</script>
+
+<script type="text/template" id="league-standings-table-template">
+	<td class="left"><%- name %></td>
+	<td class="right num"><%- played %></td>
+	<td class="right num"><%- won %></td>
+	<td class="right num"><%- lost %></td>
+	<td class="right num"><%- draw %></td>
+	<td class="right num"><%- diff %></td>
+	<td class="right num"><strong><%- points %></strong></td>
+</script>
+
+<script type="text/template" id="league-results-section-template">
+	<div id="league-results">
+		<table id="league-results-table">
+			<tbody></tbody>
+		</table>
+	</div>
+</script>
+
+<script type="text/template" id="league-results-table-template">
+	<td class="right"><%- player1Name %></td>
+	<td class="num"><%- player1Score %></td>
+	<td class="num"><%- player2Score %></td>
+	<td class="left"><%- player2Name %></td>
+	<td class="date"><%- date %></td>
+	<td class="action"><button class="remove btn">&times;</button></td>
+</script>
+
+<script type="text/template" id="league-fixtures-section-template">
+	<div id="league-fixtures">
+		<table id="league-fixtures-table">
+			<tbody></tbody>
+		</table>
+		<button id="new-round" class="button">Add round</button>
+		<button id="remove-round" class="button">Remove round</button>
+		<p>Games Per Round: <%- gamesPerRound %></p>
+		<p>Total Games: <%- totalGames %></p>
+		<p>Games Remaining: <%- gamesRemaining %></p>
+	</div>
+</script>
+
+<script type="text/template" id="league-fixtures-table-template">
+	<td class="right"><%- player1Name %></td>
+	<td class="left"><%- player2Name %></td>
+	<td class="action"><button class="new-result play btn">&#9654;</button></td>
+</script>
+
+<script type="text/template" id="league-form-new-result">
+	<div id="league-new-result">
+
+		<h3>New Result</h3>
+		<form id="new-result">
+
+			<div id="new-result-validation-message"></div>
+
+			<div class="form-section form-section-player">
+				<select class="user-select" name="player-1" id="new-result-player-1"><option value="0">Select Player 1</option></select>
+				<input type="number" name="player-1-score" min="0" id="new-result-player-1-score" value="0" />
+			</div>
+
+			<div class="form-section form-section-player">
+				<select class="user-select" name="player-2" id="new-result-player-2"><option value="0">Select Player 2</option></select>
+				<input type="number" name="player-2-score" min="0" id="new-result-player-2-score" value="0" />
+			</div>
+
+			<div class="form-section form-section-submit">
+				<button class="button-positive button-block" type="submit">Record Result</button>
+			</div>
+
+		</form>
+
+	</div>
+</script>
+
+<script type="text/template" id="league-settings-template">
+	<div id="league-settings">
+
+		<h3>New Player</h3>
+		<form id="form-new-player">
+
+			<div id="new-user-validation-message"></div>
+
+			<div class="form-section form-section-name">
+				<input type="text" name="new-player-name" id="new-player-name" placeholder="Name"/>
+			</div>
+
+			<div class="form-section form-section-submit">
+				<button class="button-positive button-block" type="submit">Add Player to League</button>
+			</div>
+
+		</form>
+
+		<h3>Players</h3>
+		<ul id="settings-player-list" class="list inset">
+		</ul>
+
+	</div>
+</script>
+
+<script type="text/template" id="league-user-settings-template">
+	<div id="league-settings">
+
+		<h3>Edit Player</h3>
+		<form id="form-new-player">
+
+			<div id="edit-user-validation-message"></div>
+
+			<div class="form-section form-section-name">
+				<input type="text" name="edit-player-name" id="edit-player-name" placeholder="Name" value="<%- name %>"/>
+			</div>
+
+			<div class="form-section form-section-submit">
+				<button id="update-player" class="button-positive button" type="submit">Update</button>
+				<button id="remove-player" class="button-negative button" type="submit">Delete</button>
+			</div>
+
+		</form>
+
+	</div>
+</script>
+
+
+<script type="text/template" id="league-list-item-template">
+	<a href="<%- target %>"><%- name %><span class="chevron"></span></a>
+</script>

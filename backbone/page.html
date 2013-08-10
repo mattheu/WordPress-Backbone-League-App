@@ -1,0 +1,45 @@
+<ul>
+	<li><a href="/backbone/#/league/2/">League 2</a></li>
+	<li><a href="/backbone/#/league/3/">League 3</a></li>
+	<li><a href="/backbone/#/league/4">League 4</a></li>
+</ul>
+
+<script type="text/template" id="search_template">
+    <h3>Results></h3>
+    <table>
+		<tbody></tbody>
+	</table>
+</script>
+
+<div id="search_container"></div>
+
+<script type="text/javascript">
+     SearchView = Backbone.View.extend({
+
+        initialize: function(){
+            this.render();
+        },
+
+        render: function(){
+
+            // Compile the template using underscore
+            var template = _.template( $("#search_template").html() );
+
+            // Load the compiled HTML into the Backbone "el"
+            this.$el.html( template );
+
+        },
+
+        events: {
+            "click input[type=button]": "doSearch"
+        },
+
+        doSearch: function( event ){
+            // Button clicked, you can access the element that was clicked with event.currentTarget
+            alert( "Search for " + $("#search_input").val() );
+        }
+
+    });
+
+    var search_view = new SearchView({ el: $("#search_container") });
+</script>
