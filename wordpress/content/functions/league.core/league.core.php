@@ -202,10 +202,6 @@ class League {
 		$this->owner = get_term_meta( $this->get_id(), 'league_owner', true );
 		$this->rounds = get_term_meta( $this->get_id(), 'league_rounds', true );
 
-		// Hacked because term meta isn't saving properly.
-		$this->owner = 1;
-		$this->rounds = 2;
-
 		$this->_league = $league;
 
 	}
@@ -220,10 +216,9 @@ class League {
 				'name' => $this->get_name()
 			) );
 
-
 		} else {
-			$league_id = wp_insert_term( $this->get_name(), 'league' );
-			$this->_league = get_term( $league_id, 'league' );
+			$this->id = wp_insert_term( $this->get_name(), 'league' );
+			$this->_league = get_term( $this->id, 'league' );
 		}
 
 		update_term_meta( $this->get_id(), 'league_owner', $this->owner );
@@ -517,8 +512,8 @@ add_action( 'init', function() {
 	if ( ! is_admin() )
 		return;
 
-	// if ( defined( 'WP_INSTALLING' ) && WP_INSTALLING )
-	// 	return;
+	if ( defined( 'WP_INSTALLING' ) && WP_INSTALLING )
+		return;
 
 	$test_league = get_term_by( 'name', 'test-league', 'league' );
 
@@ -533,38 +528,5 @@ add_action( 'init', function() {
 		$league->update();
 
 	}
-
-	// printf( var_export( $league ) );
-
-	// if ( )
-	// // $userdata = array(
-	// 	'name'      => 'Matt',
-	// 	'league'    => $test_league->term_id,
-	// );
-	// $user = new Player();
-	// $user->set_attributes($userdata);
-	// $user->update();
-
-	// $user->fetch();
-	// hm( $user->get_attributes() );
-
-	// // hm( $user->get_attributes() );
-
-
-	// $league->fetch();
-	// hm( $league->get_attributes() );
-
-	// $gamedata = array(
-	// 	'id'           => 112,
-	// 	'player1'      => 2,
-	// 	'player2'      => 1,
-	// 	'player1Score' => 29,
-	// 	'player2Score' => 21,
-	// 	'league'       => new League( 2 )
-	// );
-
-	// $game = new Game( 112 );
-	// //$game->saveGameData();
-	// hm( $game->getGameData() );
 
 }, 100 );
